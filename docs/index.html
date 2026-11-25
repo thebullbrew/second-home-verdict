@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Second Home Verdict — Own It or Rent the Weeks?</title>
+<meta name="description" content="True cost per night you actually sleep there. Own a second home vs renting the same weeks and investing the difference.">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icons/icon-32.png"><link rel="apple-touch-icon" href="icons/icon-180.png">
+<meta name="theme-color" content="#0C0912">
+<style>
+:root{--bg:#0C0912;--surface:#141021;--surface2:#1B1530;--text:#F2EEF7;--muted:#B8B0C8;--accent:#D0A94F;--accent2:#3A2E5C;--line:#2E2650;--good:#7BC47F;--bad:#E07A5F;--warn:#E3C878}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Georgia,'Times New Roman',serif;line-height:1.5}
+.hero{padding:36px 20px 22px;text-align:center;background:radial-gradient(circle at 15% 20%,rgba(208,169,79,.28) 0 1.5px,transparent 2px),radial-gradient(circle at 82% 12%,rgba(208,169,79,.35) 0 1px,transparent 1.6px),radial-gradient(circle at 65% 35%,rgba(208,169,79,.22) 0 1px,transparent 1.5px),radial-gradient(circle at 30% 60%,rgba(208,169,79,.18) 0 1px,transparent 1.4px),linear-gradient(180deg,#141021,#0C0912);border-bottom:3px solid var(--accent)}
+.eyebrow{letter-spacing:.28em;text-transform:uppercase;color:var(--accent);font-size:11px}
+h1{font-size:clamp(30px,6vw,52px);margin:8px 0 6px;line-height:1.05}h2{color:var(--accent);font-size:20px;margin:0 0 12px}h3{margin:14px 0 6px}
+.sub{color:var(--muted);max-width:720px;margin:0 auto;font-style:italic}
+.wrap{max-width:1020px;margin:0 auto;padding:18px 16px 40px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:760px){.grid{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--accent);padding:18px;border-radius:4px}
+label{display:block;font-size:13px;color:var(--muted);margin:10px 0 4px}input,select{width:100%;padding:10px;background:#0C0912;border:1px solid var(--line);color:var(--text);border-radius:3px;font-size:16px}
+button{background:var(--accent);color:#0C0912;border:0;padding:11px 16px;font-weight:700;cursor:pointer;border-radius:3px;font-family:inherit}
+button.secondary{background:var(--accent2);color:var(--text);border:1px solid var(--accent)}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.seal{display:inline-block;padding:10px 18px;border:2px solid var(--accent);border-radius:50%;width:150px;height:150px;text-align:center;padding-top:38px;font-weight:900;color:var(--accent);transform:rotate(-6deg);margin:10px auto;line-height:1.1}
+.big{font-size:34px;color:var(--accent);font-weight:900}.metric{display:flex;justify-content:space-between;border-bottom:1px dotted var(--line);padding:7px 0}.metric b{color:var(--text)}
+.bar{height:14px;background:#0C0912;border:1px solid var(--line);display:flex;overflow:hidden}.bar span{display:block;height:100%}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{border-bottom:1px solid var(--line);padding:7px;text-align:right}th:first-child,td:first-child{text-align:left}th{color:var(--accent)}
+.presets button{flex:1;min-width:120px}.note{color:var(--muted);font-size:13px}.verdictbox{text-align:center}
+textarea{width:100%;min-height:110px;background:#0C0912;color:var(--text);border:1px solid var(--line);padding:10px}
+</style></head><body>
+<header class="hero"><div class="eyebrow">✦ Starless Opulence ✦ Daily Tool #58</div><h1>The Second Home Verdict</h1><p class="sub">Everyone quotes the purchase price. Nobody quotes the price per night they actually sleep there. This does — owning vs renting the same weeks and investing the difference, on the same cash.</p></header>
+<main class="wrap">
+<div class="card presets"><h2>Start with a place</h2><div class="row">
+<button onclick="preset('beach')">Beach Condo</button><button onclick="preset('cabin')">Mountain Cabin</button><button onclick="preset('lake')">Lake House</button><button onclick="preset('city')">City Pied-à-terre</button></div></div>
+<div class="grid" style="margin-top:16px">
+<section class="card"><h2>The house</h2>
+<label>Purchase price ($)</label><input id="price" type="number" value="450000">
+<label>Down payment (%)</label><input id="downPct" type="number" value="20" step="0.5">
+<label>Closing costs (% of price)</label><input id="closingPct" type="number" value="2" step="0.25">
+<label>Mortgage rate (%)</label><input id="rate" type="number" value="6.8" step="0.05">
+<label>Term (years)</label><input id="term" type="number" value="30">
+<label>Property tax / year ($)</label><input id="tax" type="number" value="5400">
+<label>Insurance / year ($)</label><input id="ins" type="number" value="2400">
+<label>HOA / month ($)</label><input id="hoa" type="number" value="250">
+<label>Maintenance (% of price / year)</label><input id="maintPct" type="number" value="1" step="0.1">
+<label>Utilities + upkeep while empty / month ($)</label><input id="util" type="number" value="180">
+<label>Travel cost per trip ($)</label><input id="travelCost" type="number" value="250">
+<label>Trips per year</label><input id="trips" type="number" value="10">
+</section>
+<section class="card"><h2>How you'll actually use it</h2>
+<label>Nights you sleep there / year</label><input id="nights" type="number" value="35">
+<label>Comparable rental — nightly rate ($)</label><input id="rentNight" type="number" value="275">
+<label>Hold (years)</label><input id="hold" type="number" value="10">
+<label>Home appreciation (% / year)</label><input id="appr" type="number" value="3" step="0.25">
+<label>Rental rate inflation (% / year)</label><input id="rentInfl" type="number" value="3" step="0.25">
+<label>Invest return on spare cash (% / year)</label><input id="invRet" type="number" value="7" step="0.25">
+<label>Selling costs at exit (% )</label><input id="sellPct" type="number" value="6" step="0.5">
+<label>Optional: nights rented out / year (0 = never)</label><input id="strNights" type="number" value="0">
+<label>STR nightly rate if rented ($)</label><input id="strRate" type="number" value="225">
+<label>STR management + platform (% of STR gross)</label><input id="strMgmt" type="number" value="25">
+<div class="row"><button onclick="calc()">Run the verdict</button><button class="secondary" onclick="saveCase()">Save case</button></div>
+<p class="note">Honest rule: principal you pay down is not a cost — it comes back in equity. Interest, tax, insurance, HOA, upkeep and travel are. Renting gets credit for investing the down payment instead of parking it in a house you visit five weeks a year.</p>
+</section></div>
+
+<section class="card verdictbox" style="margin-top:16px"><div id="seal" class="seal">—</div><div id="headline" class="big">Run the numbers</div><p id="subline" class="sub"></p></section>
+
+<div class="grid" style="margin-top:16px">
+<section class="card"><h2>The ledger</h2><div id="ledger"></div></section>
+<section class="card"><h2>Cost anatomy — owning</h2><div id="anatomy"></div><p class="note" id="anatomyNote"></p></section>
+</div>
+
+<section class="card" style="margin-top:16px"><h2>Nights-used sensitivity — cost per night if you go more (or less)</h2><div style="overflow:auto"><table id="sensTable"></table></div></section>
+
+<section class="card" style="margin-top:16px"><h2>Saved cases</h2><div id="saved"></div><h3>Copy summary</h3><textarea id="summary" readonly></textarea><div class="row"><button class="secondary" onclick="copySummary()">Copy summary</button></div></section>
+
+<section class="card" style="margin-top:16px"><h2>The method</h2><p>Own: simulate the mortgage month by month for the hold. Add every carrying dollar — tax, insurance, HOA, maintenance, empty-house utilities, and your travel to get there. Subtract STR net income if you rent it out. At exit, sale price after appreciation, minus selling costs, minus the remaining loan, is your equity back. Economic cost = cash in − equity back.</p><p>Rent: pay the comparable nightly rate for exactly the nights you'd use, inflated yearly. Invest the down payment + closing cash at your return instead. Economic cost = rent paid − investment gains on that cash.</p><p><b>LIFESTYLE TAX</b> fires when your true cost per night is more than double the rental rate — at that point you're not buying lodging, you're buying a feeling. Price the feeling honestly and decide if it's worth it.</p></section>
+</main>
+<script>
+const $=id=>document.getElementById(id); const fmt=n=>'$'+Math.round(n).toLocaleString(); const fmt2=n=>'$'+n.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,',');
+function pmt(P,apr,n){const r=apr/100/12; if(r===0)return P/n; return P*r/(1-Math.pow(1+r,-n));}
+function balance(P,apr,n,k){const r=apr/100/12; if(r===0)return Math.max(0,P-P/n*k); const p=pmt(P,apr,n); return Math.max(0,P*Math.pow(1+r,k)-p*((Math.pow(1+r,k)-1)/r));}
+function getInputs(){return{price:+$('price').value||0,downPct:+$('downPct').value||0,closingPct:+$('closingPct').value||0,rate:+$('rate').value||0,term:+$('term').value||30,tax:+$('tax').value||0,ins:+$('ins').value||0,hoa:+$('hoa').value||0,maintPct:+$('maintPct').value||0,util:+$('util').value||0,travelCost:+$('travelCost').value||0,trips:+$('trips').value||0,nights:+$('nights').value||0,rentNight:+$('rentNight').value||0,hold:+$('hold').value||10,appr:+$('appr').value||0,rentInfl:+$('rentInfl').value||0,invRet:+$('invRet').value||0,sellPct:+$('sellPct').value||0,strNights:+$('strNights').value||0,strRate:+$('strRate').value||0,strMgmt:+$('strMgmt').value||0};}
+function compute(inp,nightsOverride){
+ const nights=nightsOverride!==undefined?nightsOverride:inp.nights;
+ const down=inp.price*inp.downPct/100, closing=inp.price*inp.closingPct/100, loan=inp.price-down;
+ const months=inp.hold*12, pay=pmt(loan,inp.rate,inp.term*12), bal=balance(loan,inp.rate,inp.term*12,months);
+ const piTotal=pay*months, principalPaid=loan-bal, interest=piTotal-principalPaid;
+ const carryAnnual=inp.tax+inp.ins+inp.hoa*12+inp.price*inp.maintPct/100+inp.util*12+inp.travelCost*inp.trips;
+ const carryTotal=carryAnnual*inp.hold;
+ const strNetPerYear=inp.strNights*inp.strRate*(1-inp.strMgmt/100); const strTotal=strNetPerYear*inp.hold;
+ const futureValue=inp.price*Math.pow(1+inp.appr/100,inp.hold);
+ const netSale=futureValue*(1-inp.sellPct/100)-bal;
+ const cashIn=down+closing+piTotal+carryTotal-strTotal;
+ const ownCost=cashIn-netSale;
+ const ownPerNight=nights>0?ownCost/(nights*inp.hold):0;
+ // Rent path
+ let rentTotal=0; for(let y=0;y<inp.hold;y++){rentTotal+=nights*inp.rentNight*Math.pow(1+inp.rentInfl/100,y);}
+ const invGain=(down+closing)*(Math.pow(1+inp.invRet/100,inp.hold)-1);
+ const rentCost=rentTotal-invGain; const rentPerNight=nights>0?rentCost/(nights*inp.hold):0;
+ // Breakeven nights: solve nights where ownCost/(n*hold) approx rentNight level using rentCost per night at that n (invGain fixed)
+ // ownPerNight = ownCost/(n*hold); set = rentNight avg approx rentCost... use simple: n = ownCost/(hold * effectiveRentPerNight) where effective = (rentTotal/n - invGain/(n*hold))? iterative approx:
+ let beNights=0; for(let n=1;n<=365;n++){let rt=0; for(let y=0;y<inp.hold;y++) rt+=n*inp.rentNight*Math.pow(1+inp.rentInfl/100,y); let rc=rt-invGain; if(ownCost/(n*inp.hold) <= rc/(n*inp.hold)+0.01 && ownCost<=rc+ (n*inp.hold)) {} if(ownCost/(n*inp.hold) <= inp.rentNight*Math.pow(1+inp.rentInfl/100,inp.hold/2)){beNights=n;break;}}
+ if(!beNights) beNights='>365';
+ return{down,closing,loan,pay,bal,interest,principalPaid,carryAnnual,carryTotal,strTotal,futureValue,netSale,cashIn,ownCost,ownPerNight,rentTotal,invGain,rentCost,rentPerNight,beNights,gap:rentCost-ownCost};
+}
+function calc(){
+ const inp=getInputs(), r=compute(inp);
+ let seal,head;
+ if(inp.nights<=0){seal='NO NIGHTS';head='Zero nights, infinite price.';}
+ else if(r.ownPerNight>2*inp.rentNight){seal='LIFESTYLE TAX';head='You are paying '+fmt(r.ownPerNight)+' a night for your own house.';}
+ else if(r.gap>15000){seal='OWN IT';head='Owning wins by '+fmt(r.gap)+' over '+inp.hold+' years.';}
+ else if(r.gap<-15000){seal='RENT THE WEEKS';head='Renting wins by '+fmt(-r.gap)+' over '+inp.hold+' years.';}
+ else{seal='CLOSE CALL';head='Within '+fmt(Math.abs(r.gap))+' over '+inp.hold+' years — lifestyle decides.';}
+ $('seal').textContent=seal; $('headline').textContent=head;
+ $('subline').textContent='True cost per night you sleep there: '+fmt(r.ownPerNight)+' owning vs '+fmt(Math.max(0,r.rentPerNight))+' renting the same nights. Break-even use: about '+r.beNights+' nights a year.';
+ const rows=[['Down + closing cash in',r.down+r.closing],['Mortgage payments over hold',r.pay*inp.hold*12],['Interest portion (gone)',r.interest],['Principal paid (returns as equity)',r.principalPaid],['Carrying costs over hold',r.carryTotal],['STR net income (credit)',-r.strTotal],['Home value at exit',r.futureValue],['Net equity back at sale',r.netSale],['OWN — economic cost',r.ownCost],['RENT — total rent paid',r.rentTotal],['RENT — investment gains on down cash',-r.invGain],['RENT — economic cost',r.rentCost],['Difference (rent − own)',r.gap]];
+ $('ledger').innerHTML=rows.map(x=>'<div class="metric"><span>'+x[0]+'</span><b>'+fmt(x[1])+'</b></div>').join('');
+ const parts=[['Interest',r.interest,'#D0A94F'],['Tax+Insurance',(inp.tax+inp.ins)*inp.hold,'#8E2432'],['HOA+Maint+Utilities',(inp.hoa*12+inp.price*inp.maintPct/100+inp.util*12)*inp.hold,'#4A5A7A'],['Travel',inp.travelCost*inp.trips*inp.hold,'#4A9A8A']];
+ const tot=parts.reduce((a,p)=>a+p[1],0)||1;
+ $('anatomy').innerHTML='<div class="bar">'+parts.map(p=>'<span style="width:'+(p[1]/tot*100)+'%;background:'+p[2]+'"></span>').join('')+'</div>'+parts.map(p=>'<div class="metric"><span>'+p[0]+'</span><b>'+fmt(p[1])+' ('+Math.round(p[1]/tot*100)+'%)</b></div>').join('');
+ $('anatomyNote').textContent='Carrying costs alone run '+fmt(r.carryAnnual)+' a year before a single mortgage dollar — that is '+fmt(r.carryAnnual/12)+' a month for a house that sits empty most of it.';
+ // sensitivity
+ let html='<tr><th>Nights / year</th><th>Own cost / night</th><th>Rent cost / night</th><th>Winner</th></tr>';
+ [7,14,21,35,50,70,90].forEach(n=>{const s=compute(inp,n); html+='<tr'+(n===inp.nights?' style="color:var(--accent);font-weight:bold"':'')+'><td>'+n+'</td><td>'+fmt(s.ownPerNight)+'</td><td>'+fmt(Math.max(0,s.rentPerNight))+'</td><td>'+(s.gap>0?'Own':'Rent')+'</td></tr>';});
+ $('sensTable').innerHTML=html;
+ $('summary').value='The Second Home Verdict: '+seal+' — '+head+' True cost '+fmt(r.ownPerNight)+'/night owning vs '+fmt(Math.max(0,r.rentPerNight))+'/night renting, '+inp.nights+' nights/yr, '+inp.hold+'-yr hold on a '+fmt(inp.price)+' place. Break-even ~'+r.beNights+' nights/yr.';
+ renderSaved();
+}
+function preset(k){const P={beach:{price:450000,downPct:20,tax:5400,ins:2400,hoa:250,util:180,nights:35,rentNight:275,strNights:0},cabin:{price:325000,downPct:25,tax:3200,ins:1600,hoa:0,util:120,nights:42,rentNight:195,strNights:30,strRate:175},lake:{price:525000,downPct:20,tax:6800,ins:2600,hoa:75,util:200,nights:50,rentNight:325,strNights:0},city:{price:650000,downPct:25,tax:7800,ins:1800,hoa:650,util:150,nights:60,rentNight:350,strNights:0}};const p=P[k];Object.keys(p).forEach(id=>{if($(id))$(id).value=p[id];});calc();}
+function saveCase(){const inp=getInputs();const r=compute(inp);let a=JSON.parse(localStorage.getItem('shv')||'[]');a.push({d:new Date().toLocaleDateString(),price:inp.price,nights:inp.nights,per:Math.round(r.ownPerNight),gap:Math.round(r.gap)});localStorage.setItem('shv',JSON.stringify(a));renderSaved();}
+function renderSaved(){let a=JSON.parse(localStorage.getItem('shv')||'[]');$('saved').innerHTML=a.length?a.map((c,i)=>'<div class="metric"><span>'+c.d+' — '+fmt(c.price)+', '+c.nights+' nights/yr</span><b>'+fmt(c.per)+'/night · gap '+fmt(c.gap)+'</b></div>').join(''):'<p class="note">No saved cases yet.</p>';}
+function copySummary(){$('summary').select();document.execCommand('copy');}
+if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
+calc();
+</script></body></html>
